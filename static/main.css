@@ -1,0 +1,70 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+html {
+    background-image: url(../static/images/blue1.jpeg);
+}
+main {
+    display: block;
+    text-align: center;
+}
+footer {
+    text-align: center;
+    margin-top: 72px;
+}
+h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    color: #3498DB;
+    margin: 72px 0;
+}
+a {
+    font-size: 1.8rem;
+    text-decoration: none;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    background: #3498DB;
+    border-radius: 15px;
+    color: #FFFFFF;
+    display: block;
+}
+p {
+    font-size: 1.8rem;
+    
+}
+.cotainer {
+    align-items: center;
+}
+.one-habit {
+    display: inline-flex;
+    align-items: center;
+
+}
+.check-habit {
+    background: #E5E7E9;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+}
+.check-habit:hover {
+    width: 52px;
+    height: 52px;
+}
+.habit-detail-btn {
+    width: 600px;
+    height: 50px;
+    margin: 8px 32px;
+    border-radius: 25px;
+    background: #3498DB;
+    color: #FFFFFF;
+    font-size: 2rem;
+    opacity: 0.8;
+    box-shadow: 5px 10px #888888;
+}
+.habit-detail-btn:hover {
+    opacity: 1.0;
+    width: 620px;
+    height: 52px;
+}

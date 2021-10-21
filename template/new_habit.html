@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>New Habit</title>
+        <script src='static/common.js'></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../static/new_habit.css">
+    </head>
+    
+    <body>
+        <header role="banner">
+            <h1>Let's make a new good habit</h1>
+        </header>
+        <main role="main"> 
+            <form name="input_new_habit" action="{{url_for('register')}}" method="post" onsubmit="return validForm()">
+                <div class="habit-name">
+                    <h2>Habit Name</h2>
+                    <input type="text" name="habit_name" id="habit-name-text">
+                </div>
+                <div class="start-date">
+                    <h2>Start Date</h2>
+                    <input type="date" name="start_date" id="start-date-time">
+                </div>
+                <div class="goal-steak">
+                    <h2>Goal Streaks</h2>
+                    <input type="text" name="goal_streaks" id="goal-streaks-text">
+                    <label for="">days</label> 
+                </div>
+                <input class="add-new-habit-btn" type="submit" name="add_new_habit" value="Add new habit">
+            </form>
+        </main>
+        <footer class="footer">
+             <div class="fotter-add-habit">
+                 <a href="{{url_for('main')}}">Come back home</a>
+             </div>
+        </footer>
+    </body>
+</html>

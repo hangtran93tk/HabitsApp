@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Today is newday</title>
+        <script src='static/common.js'></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../static/main.css">
+    </head>
+    
+    <body>
+        <header role="banner">
+            <h1>Hi Mun, try to be better !</h1>
+        </header>
+        <main role="main"> 
+            <div class="container">
+                {% for habit in habits %}
+                    <div class="one-habit">
+                        <form action="{{url_for('checkHabit')}}" method="post">
+                            <input type="submit" name="check_habit" class="check-habit" value="Check">
+                            <input type="hidden" name="checked" value="{{checked}}">
+                        </form>
+                        <form action="{{url_for('habitDetail')}}" method="post">
+                            <button class="habit-detail-btn" name="habit_detail" type="submit" value="{{habit.habit_id}}">{{habit.habit_name}}</button>
+                        </form>
+                        <p>{{habit.real_streaks}} days streak</p>
+                    </div> 
+                {% endfor %}
+            </div>
+        </main>
+        <footer class="footer">
+             <div class="fotter-add-habit">
+                 <a href="{{url_for('newHabit')}}">Add new habit</a>
+             </div>
+        </footer>
+    </body>
+</html>
