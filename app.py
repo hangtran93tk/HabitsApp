@@ -22,46 +22,60 @@ def main():
   db_habits = cursor.fetchall()
   habits = []
   color = ""
+  status = ""
+  check = 0
   for row in db_habits:
     cursor.execute("SELECT checked FROM habit_check WHERE habit_id = %s AND check_date = %s",(row[0],date.today()))
     db_habit_check = cursor.fetchone()
+    print(type(db_habit_check))
+    print(db_habit_check)
+
     if cursor.rowcount == 0:
       cursor.execute("INSERT INTO habit_check (habit_id) values (%s)", (row[0],))
       conn.commit()
-      db_habit_check = 0
-    
-    if db_habit_check == 0:
+    else:
+      check = db_habit_check[0]
+
+    print("check status")
+    print(check)
+
+    if check == 0:
       color = "E5E7E9"
+      status = "Check"
     else:
       color = "58D68D"
+      status = "Checked"
 
-    habits.append({"habit_id": row[0],"habit_name": row[1], "real_streaks" : row[4], "checked" : db_habit_check})
+    habits.append({"habit_id": row[0],"habit_name": row[1], "real_streaks" : row[4], "checked" : check, "color": color, "status": status})
 
-  return render_template('index.html', habits=habits, color=color)
+  return render_template('index.html', habits=habits)
 
 #check habit redirect
 @app.route("/checkHabit", methods=["POST"])
 def checkHabit():
-  checked = int(request.form["checked"][1])
+  checked = int(request.form["checked"])
   habit_id = int(request.form["habit_id"])
   color = ""
+  status = ""
   conn = mysql.connect()
   cursor = conn.cursor()
   if checked == 0:
     checked = 1
     color = "58D68D"
+    tatus = "Checked"
     cursor.execute("UPDATE habit_check SET checked = %s WHERE habit_id = %s AND check_date = %s", (checked, habit_id,date.today(),))
     cursor.execute("UPDATE habit_info SET real_streaks = real_streaks + 1 WHERE habit_id = %s", (habit_id,))
   elif checked == 1:
     checked = 0
     color = "E5E7E9"
+    status = "Check"
     cursor.execute("UPDATE habit_check SET checked = %s WHERE habit_id = %s AND check_date = %s", (checked, habit_id,date.today(),))
     cursor.execute("UPDATE habit_info SET real_streaks = real_streaks - 1 WHERE habit_id = %s", (habit_id,))
   
   conn.commit()
   conn.close()
   
-  return redirect(url_for("main", color=color))
+  return redirect(url_for("main", color=color, status=status))
   # return render_template("index.html", color=color)
 
 #add new habit screen 

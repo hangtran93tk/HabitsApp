@@ -5,28 +5,35 @@
 
 html {
     background-image: url(../static/images/blue1.jpeg);
+    font-family: 'Times New Roman', Times, serif;
 }
+
 main {
     display: block;
     text-align: center;
 }
+
 footer {
     text-align: center;
     margin: 32px 0;
 }
+
 h1 {
     color: #3498DB;
     margin: 72px 0;
     text-align: center;
 }
+
 h2 {
     margin: 36px 0;
 }
+
 input {
     width: 350px;
     height: 50px;
     border-radius: 15px;
 }
+
 a {
     text-decoration: none;
     color: #FFFFFF;
@@ -35,10 +42,12 @@ a {
     text-align: center;
     display: block;
 }
+
 label {
     font-size: 1.6rem;
     font-weight: bold;
 }
+
 .add-new-habit-btn {
     margin-top: 32px;
     background: #3498DB;
@@ -48,6 +57,7 @@ label {
     font-size: 1.2rem;
     border: none;
 }
+
 .fotter-add-habit {
     width: 200px;
     height: 50px;
