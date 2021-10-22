@@ -16,8 +16,9 @@
                 {% for habit in habits %}
                     <div class="one-habit">
                         <form action="{{url_for('checkHabit')}}" method="post">
-                            <input type="submit" name="check_habit" class="check-habit" value="Check">
-                            <input type="hidden" name="checked" value="{{checked}}">
+                            <input type="submit" name="check_habit" class="check-habit" value="Check" style="background-color: #{{color}};">
+                            <input type="hidden" name="checked" value="{{habit.checked}}">
+                            <input type="hidden" name="habit_id" value="{{habit.habit_id}}">
                         </form>
                         <form action="{{url_for('habitDetail')}}" method="post">
                             <button class="habit-detail-btn" name="habit_detail" type="submit" value="{{habit.habit_id}}">{{habit.habit_name}}</button>

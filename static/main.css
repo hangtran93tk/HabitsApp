@@ -32,6 +32,8 @@ a {
 }
 p {
     font-size: 1.8rem;
+    background: #3498DB;
+    border-radius: 15px;
     
 }
 .cotainer {

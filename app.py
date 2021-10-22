@@ -21,24 +21,48 @@ def main():
   cursor.execute("SELECT * from habit_info")
   db_habits = cursor.fetchall()
   habits = []
-
+  color = ""
   for row in db_habits:
     cursor.execute("SELECT checked FROM habit_check WHERE habit_id = %s AND check_date = %s",(row[0],date.today()))
     db_habit_check = cursor.fetchone()
     if cursor.rowcount == 0:
       cursor.execute("INSERT INTO habit_check (habit_id) values (%s)", (row[0],))
       conn.commit()
-      db_habit_check == 0
+      db_habit_check = 0
+    
+    if db_habit_check == 0:
+      color = "E5E7E9"
+    else:
+      color = "58D68D"
 
     habits.append({"habit_id": row[0],"habit_name": row[1], "real_streaks" : row[4], "checked" : db_habit_check})
 
-  return render_template('index.html', habits=habits)
+  return render_template('index.html', habits=habits, color=color)
 
 #check habit redirect
-@app.route("/checkHabit")
+@app.route("/checkHabit", methods=["POST"])
 def checkHabit():
+  checked = int(request.form["checked"][1])
+  habit_id = int(request.form["habit_id"])
+  color = ""
+  conn = mysql.connect()
+  cursor = conn.cursor()
+  if checked == 0:
+    checked = 1
+    color = "58D68D"
+    cursor.execute("UPDATE habit_check SET checked = %s WHERE habit_id = %s AND check_date = %s", (checked, habit_id,date.today(),))
+    cursor.execute("UPDATE habit_info SET real_streaks = real_streaks + 1 WHERE habit_id = %s", (habit_id,))
+  elif checked == 1:
+    checked = 0
+    color = "E5E7E9"
+    cursor.execute("UPDATE habit_check SET checked = %s WHERE habit_id = %s AND check_date = %s", (checked, habit_id,date.today(),))
+    cursor.execute("UPDATE habit_info SET real_streaks = real_streaks - 1 WHERE habit_id = %s", (habit_id,))
   
-  return redirect(url_for("main"))
+  conn.commit()
+  conn.close()
+  
+  return redirect(url_for("main", color=color))
+  # return render_template("index.html", color=color)
 
 #add new habit screen 
 @app.route("/newHabit")
@@ -66,6 +90,7 @@ def register():
 @app.route("/habitDetail",methods=["POST"])
 def habitDetail():
   habit_id = int(request.form["habit_detail"])
+
   conn = mysql.connect()
   cursor =conn.cursor()
   cursor.execute("SELECT * FROM habit_info WHERE habit_id = %s", (habit_id,))
