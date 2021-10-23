@@ -2,7 +2,10 @@
 <html lang="en">
     <head>
         <title>Habit Detail</title>
-        <!-- <script src='static/common.js'></script> -->
+        <script src='static/habit_detail.js'></script>
+        <link rel="stylesheet" href="../static/simple-calendar.css">
+        <script src="static/jquery.simple-calendar.min.js"></script>
+        <script src="static/jquery.simple-calendar.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../static/habit_detail.css">
     </head>
@@ -10,18 +13,26 @@
     <body>
         <header role="banner">
             <h1>Habit detail</h1>
-            {% block body %}
-                <h2>{{habit_detail.habit_name}}</h2>
-            {% endblock %}
+            
         </header>
+
         <main role="main"> 
-            <div class="container">
-               <p>{{habit_detail.goal_streaks}}/ {{habit_detail.real_streaks}}</p>
+            <div class="contents">
+                {% block body %}
+                    <h2>{{habit_detail.habit_name}}</h2>
+                {% endblock %}
+               <p>{{habit_detail.real_streaks}} / {{habit_detail.goal_streaks}}</p>
             </div>
+            <div id="container">
+
+            </div>
+
         </main>
+
         <footer class="footer">
-             <div class="fotter-add-habit">
-                 <a href="{{url_for('newHabit')}}">Change habit info</a>
+             <div class="fotter-habit-detail">
+                 <a href="{{url_for('deleteHabit')}}">Delete habit</a>
+                 <a href="{{url_for('main')}}">Come back home</a>
              </div>
         </footer>
     </body>

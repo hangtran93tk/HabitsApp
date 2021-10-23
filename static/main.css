@@ -1,13 +1,19 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: sans-serif;
 }
 
 html {
     background-image: url(../static/images/blue1.jpeg);
-    font-family: 'Times New Roman', Times, serif;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
 }
+header {
+    background: linear-gradient(90deg,#6859EA,#6ACDE0);
 
+}
 main {
     display: block;
     text-align: center;
@@ -21,12 +27,14 @@ footer {
 h1 {
     font-size: 2.5rem;
     text-align: center;
-    color: #3498DB;
-    margin: 72px 0;
+    color: #000000;
+    margin: 0 0 72px 0;
+    padding: 36px 0;
 }
 
 a {
     font-size: 1.8rem;
+    padding-top: 8px;
     text-decoration: none;
     width: 200px;
     height: 50px;
@@ -35,8 +43,13 @@ a {
     border-radius: 15px;
     color: #FFFFFF;
     display: block;
+    opacity: 0.8;
 }
-
+a:hover {
+    opacity: 1.0;
+    width: 202px;
+    height: 52px;
+}
 p {
     font-size: 1.2rem;
     background: #3498DB;
@@ -87,5 +100,28 @@ p {
 .habit-detail-btn:hover {
     opacity: 1.0;
     width: 620px;
+    height: 52px;
+}
+
+.fotter-add-habit {
+    align-items: center;
+    display: inline-flex;
+    margin-bottom: 32px;
+    
+}
+.habit-delete-btn {
+    width: 100px;
+    height: 50px;
+    margin: 8px 32px;
+    border-radius: 25px;
+    background: #3498DB;
+    color: #FFFFFF;
+    font-size: 2rem;
+    opacity: 0.8;
+    font-size: 1.0rem;
+}
+.habit-delete-btn:hover {
+    opacity: 1.0;
+    width: 102px;
     height: 52px;
 }

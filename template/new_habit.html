@@ -11,6 +11,7 @@
         <header role="banner">
             <h1>Let's make a new good habit</h1>
         </header>
+
         <main role="main"> 
             <form name="input_new_habit" action="{{url_for('register')}}" method="post" onsubmit="return validForm()">
                 <div class="habit-name">
@@ -29,6 +30,7 @@
                 <input class="add-new-habit-btn" type="submit" name="add_new_habit" value="Add new habit">
             </form>
         </main>
+        
         <footer class="footer">
              <div class="fotter-add-habit">
                  <a href="{{url_for('main')}}">Come back home</a>

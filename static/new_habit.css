@@ -1,13 +1,19 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: sans-serif;
 }
 
 html {
     background-image: url(../static/images/blue1.jpeg);
-    font-family: 'Times New Roman', Times, serif;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
 }
+header {
+    background: linear-gradient(90deg,#6859EA,#6ACDE0);
 
+}
 main {
     display: block;
     text-align: center;
@@ -19,9 +25,11 @@ footer {
 }
 
 h1 {
-    color: #3498DB;
-    margin: 72px 0;
+    color: #000000;
+    margin: 0 0 72px 0;
+    padding: 36px 0;
     text-align: center;
+    font-size: 2.5rem;
 }
 
 h2 {
@@ -35,14 +43,23 @@ input {
 }
 
 a {
-    text-decoration: none;
-    color: #FFFFFF;
     font-size: 1.2rem;
-    border-radius: 15px;
+    padding-top: 16px;
+    text-decoration: none;
+    width: 200px;
+    height: 40px;
     text-align: center;
+    background: #3498DB;
+    border-radius: 15px;
+    color: #FFFFFF;
     display: block;
+    opacity: 0.8;
 }
-
+a:hover {
+    opacity: 1.0;
+    width: 202px;
+    height: 42px;
+}
 label {
     font-size: 1.6rem;
     font-weight: bold;
@@ -56,13 +73,17 @@ label {
     color: #FFFFFF;
     font-size: 1.2rem;
     border: none;
+    opacity: 0.8;
 }
-
+.add-new-habit-btn:hover {
+    opacity: 1.0;
+    width: 202px;
+    height: 52px;
+}
 .fotter-add-habit {
     width: 200px;
     height: 50px;
     text-align: center;
     margin: 0 auto;
-    background: #3498DB;
     border-radius: 15px;
 }

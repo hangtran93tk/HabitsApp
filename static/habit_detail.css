@@ -6,4 +6,54 @@
 html {
     background-image: url(../static/images/blue1.jpeg);
     font-family: 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    align-items: center;
+    background: linear-gradient(90deg,#6859EA,#6ACDE0);
+
+}
+
+h1 {
+    color: #000000;
+    margin: 0 0 72px 0;
+    padding: 36px 0;
+    text-align: center;
+}
+h2 {
+    font-size: 2.0rem;
+    text-align: center;
+    color: #000000;
+    margin-bottom: 32px;
+}
+a {
+    font-size: 1.8rem;
+    text-decoration: none;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    background: #3498DB;
+    border-radius: 15px;
+    color: #FFFFFF;
+    display: block;
+}
+
+p {
+    font-size: 1.2rem;
+    background: #3498DB;
+    border-radius: 15px;
+    color: #FFFFFF;
+    width: 100px;
+    height: 50px;
+    margin-right: 16px;
+    text-align: center;
+    vertical-align: middle;
+}
+.fotter-habit-detail {
+    align-items: center;
+    display: block;
+    margin-bottom: 32px;
+    font-size: 1.2rem;
 }

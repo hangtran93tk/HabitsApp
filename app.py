@@ -27,17 +27,12 @@ def main():
   for row in db_habits:
     cursor.execute("SELECT checked FROM habit_check WHERE habit_id = %s AND check_date = %s",(row[0],date.today()))
     db_habit_check = cursor.fetchone()
-    print(type(db_habit_check))
-    print(db_habit_check)
 
     if cursor.rowcount == 0:
       cursor.execute("INSERT INTO habit_check (habit_id) values (%s)", (row[0],))
       conn.commit()
     else:
       check = db_habit_check[0]
-
-    print("check status")
-    print(check)
 
     if check == 0:
       color = "E5E7E9"
@@ -46,7 +41,7 @@ def main():
       color = "58D68D"
       status = "Checked"
 
-    habits.append({"habit_id": row[0],"habit_name": row[1], "real_streaks" : row[4], "checked" : check, "color": color, "status": status})
+    habits.append({"habit_id": row[0],"habit_name": row[1],"goal_streaks": row[3], "real_streaks" : row[4], "checked" : check, "color": color, "status": status})
 
   return render_template('index.html', habits=habits)
 
@@ -62,7 +57,7 @@ def checkHabit():
   if checked == 0:
     checked = 1
     color = "58D68D"
-    tatus = "Checked"
+    status = "Checked"
     cursor.execute("UPDATE habit_check SET checked = %s WHERE habit_id = %s AND check_date = %s", (checked, habit_id,date.today(),))
     cursor.execute("UPDATE habit_info SET real_streaks = real_streaks + 1 WHERE habit_id = %s", (habit_id,))
   elif checked == 1:
@@ -76,7 +71,6 @@ def checkHabit():
   conn.close()
   
   return redirect(url_for("main", color=color, status=status))
-  # return render_template("index.html", color=color)
 
 #add new habit screen 
 @app.route("/newHabit")
@@ -94,7 +88,6 @@ def register():
   cursor =conn.cursor()
   cursor.execute("INSERT INTO habit_info (habit_name, start_date, goal_streaks, real_streaks) values (% s, % s, % s, % s)", 
                   (habit_name,start_date,goal_streaks,0,))
-
   conn.commit()
   conn.close()
 
@@ -116,6 +109,18 @@ def habitDetail():
   print(habit_detail)
 
   return render_template("habit_detail.html", habit_detail=habit_detail[0])
+
+@app.route("/deleteHabit", methods=["POST"])
+def deleteHabit():
+  habit_id = int(request.form["habit_delete"])
+  print(habit_id)
+  conn = mysql.connect()
+  cursor =conn.cursor()
+  cursor.execute("DELETE FROM habit_info WHERE habit_id = %s",(habit_id,))
+  conn.commit()
+  conn.close()
+  print("Delete success")
+  return redirect(url_for("main"))
 
 if __name__ == "__main__":
   app.run()

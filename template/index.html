@@ -11,6 +11,7 @@
         <header role="banner">
             <h1>Hi Mun, try to be better !</h1>
         </header>
+
         <main role="main"> 
             <div class="container">
                 {% for habit in habits %}
@@ -20,14 +21,21 @@
                             <input type="hidden" name="checked" value="{{habit.checked}}">
                             <input type="hidden" name="habit_id" value="{{habit.habit_id}}">
                         </form>
+
                         <form action="{{url_for('habitDetail')}}" method="post">
                             <button class="habit-detail-btn" name="habit_detail" type="submit" value="{{habit.habit_id}}">{{habit.habit_name}}</button>
                         </form>
-                        <p>{{habit.real_streaks}} days streak</p>
+
+                        <p>{{habit.real_streaks}} / {{habit.goal_streaks}} days streak</p>
+                        
+                        <form action="{{url_for('deleteHabit')}}" method="post">
+                            <button class="habit-delete-btn" name="habit_delete" type="submit" value="{{habit.habit_id}}">Delete</button>
+                        </form>
                     </div> 
                 {% endfor %}
             </div>
         </main>
+
         <footer class="footer">
              <div class="fotter-add-habit">
                  <a href="{{url_for('newHabit')}}">Add new habit</a>
