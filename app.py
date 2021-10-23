@@ -110,6 +110,7 @@ def habitDetail():
 
   return render_template("habit_detail.html", habit_detail=habit_detail[0])
 
+# delete habit redirect
 @app.route("/deleteHabit", methods=["POST"])
 def deleteHabit():
   habit_id = int(request.form["habit_delete"])
